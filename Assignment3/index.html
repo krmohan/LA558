@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+    <title>KM Assignment 3</title>
+       </head>
+    
+    <style>
+        ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+    border-right:1px solid #bbb;
+}
+
+li:last-child {
+    border-right: none;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    padding: 15px;
+    background-color:#ddba;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+    </style>
+    
+<body>
+  
+  <h3>Assignment 3</h3>
+	<h5>Krithika Mohan</h5>
+   <br>
+  <br>
+    
+<ul>
+  <li><a href="#" onclick="changeMap('basemapTopo')">Basemap</a>&nbsp;&nbsp;&nbsp;</li>
+  <li><a href="#" onclick="changeMap('iowaBorder')">Iowa Border</a>&nbsp;&nbsp;&nbsp;</li>
+  <li><a href="#" onclick="changeMap('Zipcode')">Zipcode</a>&nbsp;&nbsp;&nbsp;</li>
+  <li><a href="#" onclick="changeMap('vineyards')">Vineyards</a>&nbsp;&nbsp;&nbsp;</li>
+  <li><a href="#" onclick="changeMap('canoeRoutes')">Canoe Routes</a>&nbsp;&nbsp;&nbsp;</li>
+  <li><a href="#" onclick="changeMap('museums')">Museums</a>&nbsp;&nbsp;&nbsp;</li>
+  </ul>
+  
+   <br>
+
+  <img id="myMap" src="images/basemapTopo.png"  alt="basemapTopo" width="600" height="400">
+  
+</body>
+    <script>
+        
+        function changeMap(x) {
+            document.getElementById("myMap").src = "images/"+ x +".png";
+        }
+        //changeMap("vineyards")
+    </script>
+</html> 
+        
