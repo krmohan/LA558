@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2018 by krmohan (http://jsbin.com/matexat/2/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+  <meta name="description" content="[Javascript playground]">
+
+<body>
+
+<h1>Assignment 4: Javascript Playground</h1>
+<p>Krithika Mohan<p>
+  
+  <HR>
+<p>Calling an array and using a loop to list seasons:</p>
+
+<p id="demo"></p>
+
+<script>
+ //looping an array
+var seasons, text, fLen, i;
+//var seasons listed
+seasons = ["Spring", "Summer", "Fall", "Winter"];
+fLen = seasons.length;
+text = "<ul>";
+for (i = 0; i < fLen; i++) {
+    text += "<li>" + seasons[i] + "</li>";
+}
+text += "</ul>";
+document.getElementById("demo").innerHTML = text;
+</script>
+  
+  <HR>
+  
+    <p>Variables used for calculation</p> 
+   <p id="play"></p>
+
+<script>
+  //calling an array to calculate total
+var a = 5;
+var b = 6;
+var x = a+b;
+document.getElementById("play").innerHTML ="Total: " + x;
+</script>
+    
+    <HR>
+    <p>What's my favorite season?</p> 
+   
+      <button onclick="itFunction()">Click me</button>
+
+<p id="run"></p>
+
+<script>
+function itFunction() {
+    document.getElementById("run").innerHTML = "Winter";
+}
+</script>
+      
+      <HR>
+        <p>Type in Spring, Summer, Fall or Winter in the input field and  click the button (input is case sensitive).</p>
+        
+        <input id="myInput" type="text">
+
+<button onclick="myFunction()">Enter</button>
+
+<p id="execute"></p>
+
+<script>
+function myFunction() {
+    var text;
+    var seasons = document.getElementById("myInput").value;
+
+    switch(seasons) {
+        case "Spring":
+            text = "Are the witch hazels blooming?";
+        break;
+        case "Summer":
+        text = "Vacation in Hawaii!";
+        break;
+        case "Fall":
+        text = "Do you like the colors or the allergies?";
+        break;
+        case "Winter":
+        text = "Winter is coming...";
+        break;
+        default:
+        text = "Do you know how to spell?";
+    }
+    document.getElementById("execute").innerHTML = text;
+}
+</script>
+
+
+</body>
+</html>
