@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2018 by krmohan (http://jsbin.com/ninuvab/2/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+<meta name="description" content="[Assignment5:Javascript Playground]">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Assignment5:Javascript Playground</title>
+</head>
+<body>
+  <h2>Assignment 5: Javascript Playground</h1>
+<p>Krithika Mohan<p>
+  
+  <HR>
+  <p>Cats or dogs?<p>
+    
+  <form action="/action_page.php"> 
+  <input type="radio" name="Cats" value="Cats">Cats<br>
+  <input type="radio" name="Dogs" value="Dogs">Dogs<br>
+  <br>
+  <input type="button" onclick="myFunction()" value="click me!">
+  <br><br>
+  <input type="text" id="order" size="50">
+  <input type="submit" value="Submit">
+</form>
+    
+    <HR>
+      <p>Other animals:<p>
+      
+    <select>
+   //Pulldown menu
+  <option value="Goats">Goats</option>
+  <option value="Elephants">Elephants</option>
+  <option value="Snakes">Snakes</option>
+  <option value="Wolves">Wolves</option>
+</select>  
+      <HR>
+        
+        <p>Pick more animals for your jungle:<p>
+        
+        <form action=""> 
+  <input type="checkbox" name="amphibians" id="Turtles" onclick="itFunction()">Turtles<br>
+  <input type="checkbox" name="amphibians" id="Frogs"
+onclick="itFunction2()">Frogs<br>
+  <br>
+
+          <p id="response1" style="display:none">They may be slow, but they are cute!
+</form>
+        
+        <p id="response2" style="display:none">Some of them are poisonous!
+</form>
+        <HR>
+
+<p>The map below does not involve any of these animals. Emperor penguins may be sighted here.<p>
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8207.042484321515!2d123.33457950553795!3d-75.10048768520872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xae51a4a78376dcd1%3A0x9b7c1a1b12be6d48!2sConcordia+Station%2C+Antarctica!5e0!3m2!1sen!2sus!4v1518154015746" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+<script id="jsbin-javascript">
+//Radio buttons
+function myFunction() {
+    var animal = document.forms[0];
+    var txt = "";
+    var i;
+    for (i = 0; i < animal.length; i++) {
+        if (animal[i].checked) {
+            txt = txt + animal[i].value + " ";
+        }
+    }
+    document.getElementById("order").value = "You like " + txt;
+}
+
+//Check boxes
+function itFunction(){
+    checkBox = document.getElementById("Turtles");
+    text = document.getElementById("response1");
+    if (checkBox.checked === true){
+        text.style.display="block";
+    }else{
+        text.style.display = "none";
+    }
+}
+
+
+function itFunction2(){
+    checkBox = document.getElementById("Frogs");
+    text = document.getElementById("response2");
+    if (checkBox.checked === true){
+        text.style.display="block";
+    }else{
+        text.style.display = "none";
+    }
+}
+</script>
+</body>
+</html>
