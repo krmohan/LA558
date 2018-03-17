@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2018 by krmohan (http://jsbin.com/tunowiv/3/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta name="description" content="Assignment9 Leaflet Custom Icons, Popups and Marker Rendering- Krithika's home">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Assignment 8</title>
+
+  <h4>Krithika's Home</h3>
+  <p>Assignment 9: Leaflet Custom Icons, Popups and Marker Rendering</p>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+  
+  <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+  
+<style id="jsbin-css">
+#map {
+     width: 500px;
+     height: 400px;
+}
+</style>
+</head>
+<body>
+<div id='map'></div>
+  
+
+  <br>
+	Pan to <a href="javascript:bandra()">Bandra, Mumbai</a><br>
+	
+	<a href="#" id='zoomOut'>Zoom out to level 10</a><br>
+
+	<button id="sanjaygandhi">Visit Sanjay Gandhi National Park</button>
+  
+  
+<script id="jsbin-javascript">
+var map = L.map('map').setView([19.172431, 72.957019], 12);
+
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+//-------Custom Icon: Home--------------
+var greenIcon = L.icon({
+    iconUrl: 'https://www.google.com/mapfiles/arrow.png',
+    shadowUrl: 'https://www.google.com/mapfiles/arrowshadow.png',
+
+    iconSize:     [39, 34], // size of the icon
+    shadowSize:   [39, 34], // size of the shadow
+    iconAnchor:   [10, 34], // point of the icon which will correspond to marker's location
+    shadowAnchor: [10, 34],  // the same for the shadow
+    popupAnchor:  [0, -30] // point from which the popup should open relative to the iconAnchor
+});
+
+   L.marker([19.227300, 72.969200], {icon: greenIcon}).addTo(map).bindPopup("Home: Lokpuram Housing Society")
+   .openPopup();
+
+//---------Div Marker-----
+
+var myDivIcon1 = L.divIcon({
+  iconSize: new L.Point(30, 20),
+ iconAnchor: new L.Point(10, 0),
+ html: '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD9zshjaGxlOE5DRouAfWocGHxxG5GvhhNBiQNvGsegWEsaEjvcA" alt="Kanheri Caves" style="width:30px;height:20px;">',
+ className: 'leaflet-div-icon'
+});
+
+var marker1 = L.marker ([19.207890, 72.906709],{
+ icon: myDivIcon1,
+}).addTo(map).bindPopup('Kanheri Caves <br> <img src="http://s3.india.com/travel/wp-content/uploads/2014/10/Mumbai-Kanheri-Caves1.jpg" alt="Kanheri Caves" style="width:300px;height:200px;">');
+
+
+//----------Adding multiple area markers----------
+
+
+//array list of areas
+var towns = [
+	[19.07283, 72.88261, "Bandra, Mumbai, Maharashtra"],
+	[19.03681, 73.01582, "Navi Mumbai, Maharashtra"],
+	[19.209400, 73.093948, "Kalyan-Dombivli, Maharashtra"],
+  [19.172431, 72.957019,"Thane, Maharashtra"]
+];
+
+//loop through the array and add a regular marker for each
+for (var i = 0; i < towns.length; i++) {
+	marker = new L.marker([towns[i][0],towns[i][1]])
+	.bindPopup(towns[i][2])
+	.addTo(map);
+}
+
+
+
+//----------Circle Markers----------------
+
+//Circle Marker--Sanjay Gandhi National Park
+L.circle([19.200400, 72.910909], {
+	radius: 3700, //meters
+	fill: true, //could be false
+	color: 'yellow', //the outline color
+	fillColor: 'lightyellow',
+	fillOpacity: 0.5  //this represents 50%
+ }).bindPopup("Sanjay Gandhi National Park").addTo(map);
+
+//Circle Marker that scales with map--Bandra
+L.circleMarker([19.07283, 72.88261], {
+    radius: 43,  //in pixels
+	fillColor: 'cyan',
+	weight: 0, //outline weight is thickness of outline
+	opacity: 0, //opacity of the outline
+	fillOpacity: 0.5
+}).bindPopup("Bandra").addTo(map);
+
+//10 markers using CircleMarkers
+
+var myPoints =[
+  ["10",19.016426, 73.010269,"a"],
+  ["20",19.157934, 72.993477,"e"],
+  ["20",19.077065, 72.998993,"c"],
+  ["23",19.047321, 73.069908,"d"],
+  ["16",19.125362, 72.999199,"b"],
+  ["22",19.299000, 73.223839,"a"],
+  ["30",19.2215115, 73.1644628, "e"],
+  ["12",18.990713, 73.116844,"c"],
+  ["20",19.242439, 73.120193,"a"],
+  ["25",19.194386, 72.999199,"d"],
+];
+
+//color of marker
+function getColor(d) {
+  return d == 'a' ? '#de2d26':
+         d == 'b' ? '#fdbb84':
+         d == 'c' ? '#e34a33':
+         d == 'd' ? '#e6550d':
+         d == 'e' ? '#fdae6b':
+         "#FFFFFF"; //white
+}
+
+for (var i = 0; i< myPoints.length; i++) {
+  marker = new L.circleMarker([myPoints[i][1],myPoints[i][2]], {
+    radius: myPoints[i][0]/2,
+    fillColor: getColor(myPoints[i][3]),
+    color: "#000",
+    weight:0,
+    opacity:1,
+    fillOpacity: 0.7
+  })
+  .addTo(map)
+  .bindPopup("Category: "+myPoints[i][3]);
+}
+
+//----------Links below the Map----------
+
+//Pan to Bandra
+function bandra() {
+	map.panTo(new L.LatLng(19.07283, 72.88261));
+}
+
+//set Zoom
+$("#zoomOut").click(function(){
+	map.setZoom(10);
+});
+
+//Sanjay Gandhi National Park
+$("#sanjaygandhi").click(function(){
+	map.setView(new L.LatLng(19.200400, 72.899909), 12);
+});
+
+</script>
+</body>
+</html>
