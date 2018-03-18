@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2018 by krmohan (http://jsbin.com/geveqig/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta name="description" content="Assignment10 Leaflet Playground">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Assignment 10</title>
+
+  <h4>Krithika Mohan</h3>
+  <p>Assignment 10: Leaflet Playground</p>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+  
+  <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+  
+<style id="jsbin-css">
+#map {
+     width: 500px;
+     height: 400px;
+}
+</style>
+</head>
+<body>
+<div id='map'></div>
+  <br>
+  
+<button id = "theButtonOP">Click Me to open Popup</button> <br>
+	
+	<button id = "theButtonCT">Change text on popup and open it</button> <br>
+	
+	<button id = "changeLat">Move marker lower to new latitude</button>
+  <br>
+	
+<script id="jsbin-javascript">
+var map = L.map('map').setView([19.172431, 72.957019], 10);
+
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+var marker = L.marker([19.209400, 73.093948])
+.addTo(map)
+marker.bindPopup($('<a href="#" class="speciallink">Click Me!</a>').click(function() {
+    alert("One of the most crowded stations.");
+})[0]);
+
+//******Draggable marker****
+var myMarker = L.marker([19.209400, 73.093948], {draggable: true})
+	.addTo(map)
+	.bindPopup("Draggable marker");
+
+//******Click Marker for URL****
+var marker = L.marker([19.0687893, 72.8702647], {}).addTo(map)
+
+marker.url = 'https://mmrda.maharashtra.gov.in/bandra-kurla-complex-bkc-'
+marker.on('click', function(){
+window.location = (this.url);
+});
+
+//******Popup events*****
+//open the popup of marker myMarker when the 'theButtonOP' is pressed.
+$("#theButtonOP").click(function() {
+	myMarker.openPopup();
+});
+
+
+//change the content of marker myMarker when the 'theButtonCT' is pressed.
+$("#theButtonCT").click(function() {
+	myMarker._popup.setContent('<p>Move me!</p>');
+	myMarker.openPopup();
+});
+
+
+myMarker.on('popupclose', function() {
+	alert("You just closed the popup");
+});
+
+
+
+
+//******Icon Drag Event Events*****
+myMarker.on('drag', function() {
+	console.log("dragging icon");
+});
+
+
+myMarker.on('dragend', function() {
+	console.log("dragging stopped");
+});
+
+
+//******Map Events*****
+
+//When the map is zoomed write message to the
+map.on('zoom', function(ev) {
+	console.log("The map was zoomed");
+});
+	
+
+//When the map is moved
+map.on('move', function(ev) {
+	console.log("The map was moved");
+});
+	
+
+//When the map move is stopped
+map.on('moveend', function(ev) {
+	console.log("The map was stopped");
+});
+
+
+//When the map is clicked
+map.on('click', function(ev) {
+    alert(ev.latlng); // ev is an event object (MouseEvent in this case)
+});
+
+
+
+</script>
+</body>
+</html>
