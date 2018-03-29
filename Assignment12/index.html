@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2018 by krmohan (http://jsbin.com/firodiw/2/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+<meta name="description" content="Assignment 12-KM" />
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+
+
+  <style id="jsbin-css">
+#map { height: 480px; margin: 0; padding: 0; }
+</style>
+</head>
+  <body>
+    
+    <h2>Assignment 12</h2>
+    <p>Krithika Mohan</p>
+      
+<div id="map"></div>
+  <script id="jsbin-javascript">
+
+
+//JSON
+var cities = [{
+    "name" : "Dhaka",
+    "lat" : "23.8103",
+    "long" : "90.4125",
+    "iconColor" : "0000ff",
+    "popupText" : "Capital city of Bangladesh"
+},
+{
+    "name" : "Kolkata",
+    "lat" : "22.5726",
+    "long" : "88.3639",
+    "iconColor" : "ff0000",
+    "popupText" : "Capital of West Bengal, India"
+}];
+
+
+
+//GeoJSON
+var myGeoJSON = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"marker-color":"#ff00ff","marker-size":"medium","marker-symbol":""},"geometry":{"type":"Point","coordinates":[88.65966796875,24.402135566630744]}},{"type":"Feature","properties":{"marker-color":"#db22bf","marker-size":"medium","marker-symbol":""},"geometry":{"type":"Point","coordinates":[90.4559326171875,24.78174733781577]}},{"type":"Feature","properties":{"stroke":"#577931","stroke-width":2,"stroke-opacity":1,"fill":"#adaa1d","fill-opacity":0.5},"geometry":{"type":"Polygon","coordinates":[[[89.88189697265625,23.820526175082755],[90.07415771484375,23.689804541429606],[90.15106201171875,23.581608838550334],[90.56579589843749,23.359907166336697],[90.67840576171875,23.2842420865242],[90.66192626953125,23.142885569598484],[90.71411132812499,23.00137983406543],[90.8734130859375,23.11004929735674],[90.99151611328125,23.465765790247943],[91.021728515625,23.878303435147103],[90.911865234375,23.981233711026714],[90.54107666015625,24.1241952831143],[90.02197265625,24.114168089756113],[89.88189697265625,23.820526175082755]]]}}]}
+
+
+//Base Layers
+var OSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 18
+});
+
+
+//create the map
+var map = L.map('map', {
+  center: new L.LatLng(23.8103, 90.4125),
+  zoom: 6,
+  layers: [OSM]
+});
+
+
+//Adding JSON to map
+
+var iconMarkerURL = "http://www.googlemapsmarkers.com/v1/";
+
+ for (var i = 0; i < cities.length; i++) {
+
+//access the data by index i for example 
+  console.log(cities[i].name);
+
+  var marker = L.marker([cities[i].lat, cities[i].long], {    
+    icon: L.icon({
+      iconUrl: iconMarkerURL + cities[i].iconColor,
+      iconSize:[10, 17],
+      iconAnchor:[5, 17],
+      popupAnchor:[0, -20]
+    }),
+    title: cities[i].name
+  }).bindPopup("<b>"+cities[i].name+"</b><br>"+cities[i].popupText+".").addTo(map);
+}
+
+
+//style for geojson polyline and polygons
+//Markers will use default
+var myStyle = {
+    "color": "#ff7800",
+    "weight": 5,
+    "opacity": 0.65,
+};
+
+L.geoJSON(myGeoJSON, {
+    style: myStyle,
+}).addTo(map);
+
+//******layer group*******
+//Base Layers
+var CartoDB_DarkMatter = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	subdomains: 'abcd',
+	maxZoom: 19
+});
+
+var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	maxZoom: 17,
+	attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+});
+
+
+var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+
+
+// Overlay layers
+var NASAGIBS_ModisTerraSnowCover = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/MODIS_Terra_Snow_Cover/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', {
+	attribution: 'Imagery provided by services from the Global Imagery Browse Services (GIBS), operated by the NASA/GSFC/Earth Science Data and Information System (<a href="https://earthdata.nasa.gov">ESDIS</a>) with funding provided by NASA/HQ.',
+	bounds: [[-85.0511287776, -179.999999975], [85.0511287776, 179.999999975]],
+	minZoom: 1,
+	maxZoom: 8,
+	format: 'png',
+	time: '',
+	tilematrixset: 'GoogleMapsCompatible_Level',
+	opacity: 0.75
+});
+
+
+var Stamen_TonerLines = L.tileLayer('http://{s}.tile.stamen.com/toner-lines/{z}/{x}/{y}.png', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 20
+});
+
+
+//------ Vector and Marker Layers
+var shillong = L.marker([25.5788, 91.8933]).bindPopup('This is Shillong'),
+agartala    = L.marker([23.8315, 91.2868]).bindPopup('This is Agartala');
+
+var polygon = L.polygon([
+				[40.914902, -108.991651],
+				[40.948102, -102.048292],
+				[36.986472, -102.136183],
+				[37.091706, -109.035597]
+],{
+
+				color: 'lightblue',
+				fillColor: 'lightblue',
+				fillOpacity: 0.5,
+	
+});
+
+var someStuff = L.layerGroup([shillong, agartala, polygon]);
+
+
+		//layer control
+		var baseMaps = {
+			"DarkBase": CartoDB_DarkMatter,
+			"Esri WorldImagery": Esri_WorldImagery,
+			"Topography": OpenTopoMap,
+		};
+
+		var overlayMaps = {
+			"Stamen TonerLines": Stamen_TonerLines,
+			"Markers": someStuff,
+      "NASA SnowCover": NASAGIBS_ModisTerraSnowCover,
+
+		};
+
+		L.control.layers(baseMaps, overlayMaps).addTo(map);
+</script>
+</body>
+</html>
