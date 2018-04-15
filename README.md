@@ -1,6 +1,5 @@
-# Adventures in Web Mapping
-### _with_
-## Krithika Mohan
+_with_
+### Krithika Mohan
 <hr>
 
 **LA 558 Spring 2018**
