@@ -1,9 +1,9 @@
 # Adventures in Web Mapping
 ### _with_
-## Krithika Mohan :open_mouth:
+## Krithika Mohan
 <hr>
 
-**LA 558 | Spring 2018**
+**LA 558 Spring 2018**
 
 Assignment list
 
