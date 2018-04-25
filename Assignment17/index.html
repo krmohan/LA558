@@ -107,7 +107,7 @@ $('#geocode').click(function () {
             title: address,
             opacity: 0.70,
         }).addTo(map);
-      marker.bindPopup(address, lat, long, county).openPopup();
+      marker.bindPopup(address +" <br>" + "County: " + county +',<br>'+ "Township: " + township +',<br>'+ "Lat: " + lat +"<br>Long: " +long).openPopup();
 
 		map.setView([lat, long]);
 
