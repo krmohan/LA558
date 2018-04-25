@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2018 by krmohan (http://jsbin.com/bufedov/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+<meta name="description" content="Assignment 17">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Assignment 17</title>
+</head>
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> 
+	  
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+	
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+  
+    <h3>Assignment 17</h3>
+  <p>Krithika Mohan</p>
+
+  <style id="jsbin-css">
+#map {
+     position: relative;
+     width: 2000px;
+     height: 600px;
+     margin-top: 0px;
+     margin-right: 0px;
+	   margin-left: 0px;
+     margin-bottom: 0px;
+}
+</style>
+</head>
+  <body>
+    <strong>Enter the address:</strong>
+   <input type="text" id="myAddress">
+
+	  <button type="button" id='geocode'>Go!</button>
+
+	  <br>
+    Film location for The Chronicles of Narnia: The Lion, the Witch and the Wardrobe.
+    <h4>Locations to try:</h4>1. SH 73, Arthur's Pass 7875, New Zealand: The limestone boulders and tors of Flock Hill, west of Christchurch, New Zealand (Confrontation between Aslan and Jadis).
+      <br><br>2. Te Whanganui-A-Hei Marine Reserve, 3591, New Zealand: Cathedral Cove, Mercury Bay, Coromandel Peninsula, east of Auckland, New Zealand (Ruins of Cair Paravel).</p>
+
+<div id="map">
+</div>
+  <script id="jsbin-javascript">
+console.clear();
+
+var map = L.map('map').setView([-40, 176], 5);
+
+//set Zoom
+$("#zoomOut").click(function(){
+	map.setZoom(5);
+});
+
+// add an OpenStreetMap tile layer
+var OSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 18
+}).addTo(map);
+
+
+//uncomment for testing
+//$('#myAddress').val('SH 73, Arthur's Pass 7875, New Zealand');
+
+$('#geocode').click(function () {
+    myAddress = encodeURI($('#myAddress').val());
+  //address
+
+    //var geocodingAPI_URL = "http://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address="+myAddress+"&benchmark=9&format=json";
+
+
+    var geocodingAPI_URL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + myAddress + "&sensor=true";
+
+    console.log(geocodingAPI_URL);
+
+    //Start Geocoding
+    $.getJSON(geocodingAPI_URL, function (json) {
+        //console.log(json.results[0].address_components);
+        //console.log(json.status);
+        var address = json.results[0].formatted_address;
+        var lat = json.results[0].geometry.location.lat;
+        var long = json.results[0].geometry.location.lng;
+        console.log(address);
+        console.log(lat);
+        console.log(long);
+        var county = '';
+        $.each(json.results[0].address_components, function (i, jsonData) {
+            level = jsonData.types[0];
+            if ('administrative_area_level_2' === level.toLowerCase()) {
+                county = (jsonData.short_name);
+            }
+        });
+        console.log("Welcome to " + county + "!");
+
+
+        //Markers
+        var marker = L.marker([lat, long], {
+            draggable: false,
+            title: address,
+            opacity: 0.70,
+        }).addTo(map);
+      marker.bindPopup(address, lat, long, county).openPopup();
+
+		map.setView([lat, long]);
+
+
+    });
+}); //end geocode click function
+
+</script>
+</body>
+</html>
+<body>
