@@ -34,7 +34,7 @@ Assignment list
 
 [Assignment 14](https://krmohan.github.io/LA558/Assignment14/)
 
-[Assignment 15](https://krmohan.github.io/LA558/Assignment15/)
+[Assignment 15](https://krmohan.github.io/LA558/Assignment15/index.html)
 
 [Assignment 16](https://krmohan.github.io/LA558/Assignment16/)
 
