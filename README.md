@@ -56,9 +56,9 @@ Assignment list
 
 [Assignment 25](https://krmohan.github.io/LA558/Assignment25/)
 
-Mini Project
+[Mini Project](https://krmohan.github.io/LA558/FinalProject/)
 
-Tech Report
+[Tech Report](https://krmohan.github.io/LA558/TechReport/TechReport.pdf)
 
 [Final Project](https://krmohan.github.io/LA558/FinalProject/)
 
