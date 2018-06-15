@@ -61,7 +61,7 @@ Assignment list
 
 [Final Project](https://krmohan.github.io/LA558/FinalProject/)
 
-`PAGE UNDER CONSTRUCTION
+`PAGE UNDER CONSTRUCTION! 
 Please let me know if any of the links above don't work for you!`
 ![Image](https://krmohan.github.io/LA558/Images/1j9mu4.jpg)
 
