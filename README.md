@@ -1,8 +1,17 @@
 _with_
 ### Krithika Mohan
+krithikam@outlook.com
 <hr>
 
 **LA 558 Spring 2018**
+
+Introduction to Web Mapping and Online GIS
+LA/CRP 458/558 • Spring 2018 • 3 credits
+Professor Christopher J. Seeger, GISP, ASLA
+Department of Landscape Architecture
+Iowa State University
+
+This course introduces students to the use and development of online mapping and GIS tools to support participatory design, Volunteered Geographic Information (VGI), information sharing, geodesign and decision-making. The Lecture/Lab emphasizes practical applications and uses of Web GIS through Web scripting/coding geoprocess modeling, and user interface design using a wide variety of cutting-edge applications and application programming interfaces (API). The following deliverables were produced using applications such as Leaflet, MapBox, Carto and JavaScript supplemented with basic coding using HTML and CSS.
 
 Assignment list
 
@@ -46,23 +55,14 @@ Assignment list
 
 [Assignment 20](https://krmohan.github.io/LA558/Assignment20/)
 
-[Assignment 21](https://krmohan.github.io/LA558/Assignment21/)
-
-[Assignment 22](https://krmohan.github.io/LA558/Assignment22/)
-
-[Assignment 23](https://krmohan.github.io/LA558/Assignment23/)
-
-[Assignment 24](https://krmohan.github.io/LA558/Assignment24/)
-
-[Assignment 25](https://krmohan.github.io/LA558/Assignment25/)
-
 [Mini Project](https://krmohan.github.io/LA558/FinalProject/)
 
 [Tech Report](https://krmohan.github.io/LA558/TechReport/TechReport.pdf)
 
 [Final Project](https://krmohan.github.io/LA558/FinalProject/)
 
-`PAGE UNDER CONSTRUCTION`
+`PAGE UNDER CONSTRUCTION
+Please let me know if any of the links above don't work for you!`
 ![Image](https://krmohan.github.io/LA558/Images/1j9mu4.jpg)
 
 
