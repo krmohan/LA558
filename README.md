@@ -7,8 +7,11 @@ krithikam@outlook.com
 
 Introduction to Web Mapping and Online GIS
 LA/CRP 458/558 • Spring 2018 • 3 credits
+
 Professor Christopher J. Seeger, GISP, ASLA
+
 Department of Landscape Architecture
+
 Iowa State University
 
 This course introduces students to the use and development of online mapping and GIS tools to support participatory design, Volunteered Geographic Information (VGI), information sharing, geodesign and decision-making. The Lecture/Lab emphasizes practical applications and uses of Web GIS through Web scripting/coding geoprocess modeling, and user interface design using a wide variety of cutting-edge applications and application programming interfaces (API). The following deliverables were produced using applications such as Leaflet, MapBox, Carto and JavaScript supplemented with basic coding using HTML and CSS.
